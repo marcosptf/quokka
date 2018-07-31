@@ -1,5 +1,6 @@
 """Quokka CMS!"""
 
+import gettext
 from pathlib import Path
 from quokka.core.app import QuokkaApp
 from quokka.core import configure_extensions, configure_extension
@@ -33,3 +34,13 @@ def create_app(test=False, **settings):
     app = create_app_base(test=test, **settings)
     configure_extensions(app)
     return app
+
+trans = gettext.translation(
+    domain='quokka', 
+    localedir='locale',
+    languages='en_US',
+    #languages=['pt_BR'],
+    fallback=True,    
+)
+_ = trans.gettext
+
